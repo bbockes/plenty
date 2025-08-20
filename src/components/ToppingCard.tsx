@@ -16,11 +16,11 @@ export function ToppingCard({
   isSelected,
   onToggle
 }: ToppingCardProps) {
-  return <div className={`relative border ${isSelected ? 'border-red-600 border-2' : 'border-gray-300'} rounded p-4 flex flex-col items-center cursor-pointer transition-all hover:shadow-md`} onClick={onToggle}>
+  return <div className={`relative border ${isSelected ? 'border-red-600 border-2' : 'border-gray-300'} rounded p-3 flex flex-col items-center cursor-pointer transition-all hover:shadow-md`} onClick={onToggle}>
       {isSelected && <div className="absolute top-2 right-2 bg-red-600 rounded-full p-1">
           <CheckIcon className="h-4 w-4 text-white" />
         </div>}
-      <div className="h-24 w-24 flex items-center justify-center mb-2">
+      <div className="h-20 w-20 flex items-center justify-center mb-1">
         <img src={image} alt={name} className="max-h-full max-w-full object-contain" />
       </div>
       <div className="text-center">
