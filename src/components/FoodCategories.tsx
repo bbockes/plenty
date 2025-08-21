@@ -49,8 +49,7 @@ export function FoodCategories({
   onSelectCategory
 }: FoodCategoriesProps) {
   return <div className="w-full bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto overflow-x-auto pt-5 pb-10 md:pt-10 md:pb-[80px] px-4 md:px-16">
-      <div className="max-w-7xl mx-auto overflow-x-auto pt-5 pb-5 md:pt-10 md:pb-5 px-4 md:px-16">
+      <div className="max-w-7xl mx-auto overflow-x-auto pt-5 pb-5 md:pt-10 md:pb-10 px-4 md:px-16">
         <div className="flex gap-3 min-w-max">
           {categories.map(category => (
             <div 
@@ -73,7 +72,6 @@ export function FoodCategories({
             </div>
           ))}
         </div>
-      </div>
       </div>
     </div>;
 }
