@@ -1,43 +1,43 @@
 import React from 'react';
 export const categories = [{
   id: 1,
-  name: 'Classic Combo',
+  name: 'CLASSIC\nCOMBO',
   icon: '🥤'
 }, {
   id: 2,
-  name: 'Burgers',
+  name: 'BURGERS',
   icon: '🍔'
 }, {
   id: 3,
-  name: 'Hot Dogs',
+  name: 'HOT DOGS',
   icon: '🌭'
 }, {
   id: 4,
-  name: 'Sandwiches',
+  name: 'SANDWICHES',
   icon: '🥪'
 }, {
   id: 5,
-  name: 'Fries',
+  name: 'FRIES',
   icon: '🍟'
 }, {
   id: 6,
-  name: 'Drinks',
+  name: 'DRINKS',
   icon: '🥤'
 }, {
   id: 7,
-  name: 'Catering',
+  name: 'CATERING',
   icon: '📦'
 }, {
   id: 8,
-  name: 'Sides',
+  name: 'SIDES',
   icon: '🍟'
 }, {
   id: 9,
-  name: 'Desserts',
+  name: 'DESSERTS',
   icon: '🍦'
 }, {
   id: 10,
-  name: 'Specials',
+  name: 'SPECIALS',
   icon: '🎁'
 }];
 interface FoodCategoriesProps {
@@ -50,14 +50,19 @@ export function FoodCategories({
 }: FoodCategoriesProps) {
   return <div className="w-full bg-white py-6 border-b border-gray-200">
       <div className="max-w-7xl mx-auto overflow-x-auto pt-8 pb-6">
-        <div className="flex justify-evenly min-w-max px-4 gap-2 sm:gap-4">
+        <div className="flex justify-center items-center min-w-max px-4 gap-6 md:gap-8 lg:gap-12">
           {categories.map(category => <div key={category.id} className="flex flex-col items-center gap-2 cursor-pointer" onClick={() => onSelectCategory(category.id)}>
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center transition-all
+              <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 rounded-full flex items-center justify-center transition-all
                   ${selectedCategoryId === category.id ? 'border-2 border-red-600' : 'border border-gray-300'}`}>
-                <span className="text-lg sm:text-xl md:text-xl lg:text-2xl">{category.icon}</span>
+                <span className="text-xl sm:text-2xl md:text-2xl lg:text-3xl">{category.icon}</span>
               </div>
-              <p className={`text-xs sm:text-xs md:text-xs font-bold text-center whitespace-nowrap ${selectedCategoryId === category.id ? 'text-red-600' : ''}`}>
-                {category.name}
+              <p className={`text-xs sm:text-xs md:text-sm font-bold text-center leading-tight ${selectedCategoryId === category.id ? 'text-red-600' : 'text-black'}`}>
+                {category.name.split('\n').map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    {index < category.name.split('\n').length - 1 && <br />}
+                  </React.Fragment>
+                ))}
               </p>
             </div>)}
         </div>
