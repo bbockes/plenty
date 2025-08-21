@@ -49,7 +49,7 @@ export function FoodCategories({
   onSelectCategory
 }: FoodCategoriesProps) {
   return <div className="w-full bg-white py-6 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto overflow-x-auto pt-2">
+      <div className="max-w-7xl mx-auto overflow-x-auto pt-8">
         <div className="flex justify-evenly min-w-max px-4 gap-2 sm:gap-4">
           {categories.map(category => <div key={category.id} className="flex flex-col items-center gap-2 cursor-pointer" onClick={() => onSelectCategory(category.id)}>
               <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center transition-all
