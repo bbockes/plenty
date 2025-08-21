@@ -49,7 +49,7 @@ export function FoodCategories({
   onSelectCategory
 }: FoodCategoriesProps) {
   return <div className="w-full bg-white py-6 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto overflow-x-auto pt-8 pb-6">
+      <div className="max-w-7xl mx-auto overflow-x-auto pt-8 pb-6 px-4 md:px-16">
         <div className="flex gap-3 md:gap-6 min-w-max">
           {categories.map(category => (
             <div 
