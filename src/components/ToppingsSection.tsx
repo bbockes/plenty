@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { SearchIcon, XIcon } from 'lucide-react';
 import { ToppingCard } from './ToppingCard';
 import { categories } from './FoodCategories';
 // Mock data for toppings
@@ -153,28 +154,60 @@ export function ToppingsSection({
   selectedCategoryId
 }: ToppingsSectionProps) {
   const [selectedToppings, setSelectedToppings] = useState<number[]>([]);
-  // Filter toppings based on the selected category
+  const [searchQuery, setSearchQuery] = useState('');
+  // Filter toppings based on the selected category and search query
   const toppings = useMemo(() => {
-    return allToppings.filter(topping => topping.categories.includes(selectedCategoryId));
-  }, [selectedCategoryId]);
+    let filtered = allToppings.filter(topping => topping.categories.includes(selectedCategoryId));
+    
+    if (searchQuery.trim()) {
+      filtered = filtered.filter(topping => 
+        topping.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  }, [selectedCategoryId, searchQuery]);
   // Get the selected category name
   const selectedCategory = categories.find(cat => cat.id === selectedCategoryId);
   const toggleTopping = (id: number) => {
     setSelectedToppings(prev => prev.includes(id) ? prev.filter(toppingId => toppingId !== id) : [...prev, id]);
   };
+
+  const clearSearch = () => {
+    setSearchQuery('');
+  };
   return <div className="w-full">
-      <div className="flex justify-between items-center mb-2">
-        <div>
-          <h2 className="text-2xl font-bold uppercase">
-            {selectedCategory ? `CUSTOMIZE YOUR ${selectedCategory.name}` : 'SELECT UNLIMITED TOPPINGS'}
-          </h2>
-          <p className="text-sm text-gray-600">
-            Select your preferred toppings
-          </p>
+      <div className="mb-6">
+        <div className="relative max-w-md">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <SearchIcon className="h-5 w-5 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-red-600 placeholder-gray-500 text-sm"
+            placeholder={`Search ${selectedCategory?.name.toLowerCase() || 'toppings'}...`}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button
+              onClick={clearSearch}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+            >
+              <XIcon className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+            </button>
+          )}
         </div>
-        {selectedToppings.length > 0 && <div className="border border-red-600 text-red-600 text-xs font-bold px-4 py-1">
-            {selectedToppings.length} SELECTED
-          </div>}
+        <div className="flex items-center justify-between mt-3">
+          <p className="text-sm text-gray-600">
+            {searchQuery ? `${toppings.length} results found` : `${toppings.length} available toppings`}
+          </p>
+          {selectedToppings.length > 0 && (
+            <div className="border border-red-600 text-red-600 text-xs font-bold px-4 py-1">
+              {selectedToppings.length} SELECTED
+            </div>
+          )}
+        </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 mt-6">
         {toppings.map(topping => <ToppingCard key={topping.id} name={topping.name} calories={topping.calories} image={topping.image} price={topping.price} isSelected={selectedToppings.includes(topping.id)} onToggle={() => toggleTopping(topping.id)} />)}
