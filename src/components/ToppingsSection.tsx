@@ -198,10 +198,7 @@ export function ToppingsSection({
             </button>
           )}
         </div>
-        <div className="flex items-center justify-between mt-3">
-          <p className="text-sm text-gray-600">
-            {searchQuery ? `${toppings.length} results found` : `${toppings.length} available toppings`}
-          </p>
+        <div className="flex items-center justify-end mt-3">
           {selectedToppings.length > 0 && (
             <div className="border border-red-600 text-red-600 text-xs font-bold px-4 py-1">
               {selectedToppings.length} SELECTED
