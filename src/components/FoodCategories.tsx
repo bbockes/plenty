@@ -74,5 +74,6 @@ export function FoodCategories({
           ))}
         </div>
       </div>
+      </div>
     </div>;
 }
