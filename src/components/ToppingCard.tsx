@@ -25,7 +25,6 @@ export function ToppingCard({
       </div>
       <div className="text-center">
         <p className="text-red-600 font-bold text-sm">{name}</p>
-        <p className="text-xs text-gray-600">{calories}</p>
         {price && <p className="text-xs font-bold mt-1">{price}</p>}
       </div>
     </div>;
