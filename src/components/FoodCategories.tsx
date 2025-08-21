@@ -50,7 +50,7 @@ export function FoodCategories({
 }: FoodCategoriesProps) {
   return <div className="w-full bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto overflow-x-auto pt-5 pb-5 md:pt-10 md:pb-10 px-4 md:px-16">
-        <div className="flex gap-3 min-w-max">
+        <div className="max-w-7xl mx-auto overflow-x-auto pt-5 pb-5 md:pt-10 md:pb-[30px] px-4 md:px-16">
           {categories.map(category => (
             <div 
               key={category.id}
